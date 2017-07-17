@@ -16,7 +16,7 @@ for i in range(n):
     D[i][i]=D1[i]
     if(D1[i]!=0):
          Dinverse[i][i] = 1/float(D1[i])
-X1=X0= np.zeros(n)
+X1= np.zeros(n)
 #compruebo si X es igual a cero valorando en la matriz A
 def comprobar(X):
     global A
@@ -48,10 +48,9 @@ flag=False
 
 
 while(flag==False):
-    X0 = X1
-
+   
     #cada proceso con su inicio y fin calcula su parte
-    X1[inicio:fin] = X0[inicio:fin] + np.matmul(Dinverse[inicio:fin],b - np.matmul(A,X0))
+    X1[inicio:fin] = X1[inicio:fin] + np.matmul(Dinverse[inicio:fin],b - np.matmul(A,X1))
 
 
 
@@ -83,9 +82,8 @@ while(flag==False):
     flag = comprobar(X1)
 
 
-#se supone con cada envio y recivo X1 se actualiza por lo que al final debe mostrar el valor final
 
 
 
 if rank == size -1:
-    print "soluciones \n",X1
+     print "soluciones \n",X1
