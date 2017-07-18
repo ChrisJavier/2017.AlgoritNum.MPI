@@ -1,3 +1,10 @@
+"""
+Created on Mon Jul 17 21:37:58 2017
+
+@Autores: Alexander Coronel, Christian Carrera
+
+Tema= Paralelizacion del programa Sistema de Ecuaciones
+"""
 #IMPORTAMOS LAS LIBRERIAS NECESARIAS PARA RESOLVER EL PROBLEMAS
 from mpi4py import MPI
 import numpy as np
