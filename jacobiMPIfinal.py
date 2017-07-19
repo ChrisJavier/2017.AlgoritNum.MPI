@@ -18,18 +18,31 @@ def matrizA(n):
     archivo=open("matrizA.txt","r")
     for i in range(n):
         line=archivo.readline()
-        print line
+        #print line
         for j in range(n):
             A[i][j]=float(((line.split('\n'))[0].split(';'))[j])
-    
-    print A
+
+    #print A
     return A
+
+def vectorB(n):
+    B=np.zeros(n)
+    archivo= open("vectorB.txt","r")
+    line= archivo.readline()
+    #print line
+    for i in range(n):
+        B[i]=float(((line.split('\n'))[0].split(';'))[i])
+
+    #print B
+    return B
+
 #Declaramos la matriz y los vectores necesarios para el programa
 #A = np.array([[10,1,3,2],[2,13,2,3],[2,3,17,3],[2,6,1,12]],dtype=float)
-n = 4
+n = 100
 A=matrizA(n)
 #b = np.array([1,6,2,7]) # matriz de valores b
-b = np.random.randint(100,size=n)
+b = vectorB(n)
+
 D = np.zeros((n,n)) #inicializamos las matriz con ceros
 D1 = np.diag(A)
 Dinverse = D
@@ -39,8 +52,8 @@ for i in range(n):
     D[i][i]=D1[i]
     if(D1[i]!=0):
          Dinverse[i][i] = 1/float(D1[i])
-X1=X0= np.zeros(n)
-  
+X1= np.zeros(n)
+
 #compruebo si X es igual a cero valorando en la matriz A
 def comprobar(X):
     global A
@@ -67,10 +80,10 @@ flag=False
 #tiene que llegar a converguer
 
 while(flag==False):
-    X0 = X1
+
 
     #cada proceso con su inicio y fin calcula su parte
-    X1[inicio:fin] = X0[inicio:fin] + np.matmul(Dinverse[inicio:fin],b - np.matmul(A,X0))
+    X1[inicio:fin] = X1[inicio:fin] + np.matmul(Dinverse[inicio:fin],b - np.matmul(A,X1))
 
 
 
