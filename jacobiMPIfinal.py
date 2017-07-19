@@ -13,32 +13,23 @@ comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
 
-#==============================================================================
-# Este metodo crea un metodo a partir de un tamaño en un rango de 0, 99
-#==============================================================================
-def matrizC(n):
-    sum=0
+def matrizA(n):
     A=np.zeros((n,n))
+    archivo=open("matrizA.txt","r")
     for i in range(n):
+        line=archivo.readline()
+        print line
         for j in range(n):
-            if(i==j):
-                A[i][j]=np.random.randint(100*n,150*n)
-            else:
-                A[i][j]=np.random.randint(0,20)
-            if j!=i:
-                sum+=A[i][j] 
-                
-        sum=0
-    return A    
-
+            A[i][j]=float(((line.split('\n'))[0].split(';'))[j])
+    
+    print A
+    return A
 #Declaramos la matriz y los vectores necesarios para el programa
 #A = np.array([[10,1,3,2],[2,13,2,3],[2,3,17,3],[2,6,1,12]],dtype=float)
-ran=10
-A = matrizC(ran)
-print A
-n = len(A)
+n = 4
+A=matrizA(n)
 #b = np.array([1,6,2,7]) # matriz de valores b
-b = np.random.randint(100,size=ran)
+b = np.random.randint(100,size=n)
 D = np.zeros((n,n)) #inicializamos las matriz con ceros
 D1 = np.diag(A)
 Dinverse = D
